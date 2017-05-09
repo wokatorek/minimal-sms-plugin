@@ -11,7 +11,7 @@
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="sms">
-                <param name="android-package" value="pl.wokatorek.cordova.plugin.sms.MinimalSmsPlugin"/>
+                <param name="android-package" value="pl.wokatorek.cordova.plugin.sms.MinimalSMSPlugin"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
