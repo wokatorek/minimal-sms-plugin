@@ -6,7 +6,7 @@
     <license>MIT</license>
     <keywords>cordova,sms</keywords>
     <js-module src="www/sms.js" name="sms">
-        <clobbers target="sms" />
+        <clobbers target="window.sms" />
     </js-module>
     <platform name="android">
         <config-file target="config.xml" parent="/*">
