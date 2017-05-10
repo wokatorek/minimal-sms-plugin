@@ -2,9 +2,11 @@ package pl.wokatorek.cordova.plugin.miniSms;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 
 public class SmsBroadcastReceiver extends BroadcastReceiver {
