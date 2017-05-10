@@ -66,7 +66,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   private void send(String number, String message, CallbackContext callbackContext){
     SmsManager smsManager = smsManager.getDefault();
 		final ArrayList<String> parts = smsManager.divideMessage(message);
-    final SmsBroadcastReceiver broadcastReceiver = new SmsBroadcastReceiver(parts.size(), callbackContext);
+    final SmsBroadcastReceiver broadcastReceiver = new SmsBroadcastReceiver(parts.size(), callbackContext, cordova);
     String smsActionRandom = "SMS_SENT"+java.util.UUID.randomUUID().toString();
 		this.cordova.getActivity().registerReceiver(broadcastReceiver, new IntentFilter(smsActionRandom));
     PendingIntent sentIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), 0, new Intent(smsActionRandom), 0);

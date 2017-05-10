@@ -10,10 +10,12 @@ import org.apache.cordova.PluginResult;
 public class SmsBroadcastReceiver extends BroadcastReceiver {
   private int partsCount;
   private CallbackContext callbackContext;
+  private CordovaInterface cordova;
 
-  SmsBroadcastReceiver(int partsCount, CallbackContext callbackContext) {
+  SmsBroadcastReceiver(int partsCount, CallbackContext callbackContext, CordovaInterface cordova) {
     this.partsCount = partsCount;
     this.callbackContext = callbackContext;
+    this.cordova = cordova;
   }
 
   @Override
