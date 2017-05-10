@@ -10,3 +10,5 @@ sms.startListening(isIntercepting, successCallback, failureCallback) - isInterce
 sms.stopListening(successCallback, failureCallback)
 
 fires 'onSMSReception' event
+
+Cordova 6.4, Android SDK min 14 
