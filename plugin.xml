@@ -25,5 +25,6 @@
     		    <uses-permission android:name="android.permission.SEND_SMS" />
         </config-file>
         <source-file src="src/android/MinimalSMSPlugin.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
+        <source-file src="src/android/SmsBroadcastReceiver.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
     </platform>
 </plugin>
