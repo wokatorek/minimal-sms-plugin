@@ -1,10 +1,14 @@
 package pl.wokatorek.cordova.plugin.miniSms;
 
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 import java.util.ArrayList;
-import org.apache.commons.lang3.NotImplementedException;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
@@ -79,14 +83,14 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   }
 
   private PluginResult getLatestReceivedAction(int number, CallbackContext callbackContext){
-    throw new NotImplementedException();
+    throw new java.lang.UnsupportedOperationException("Not supported yet.");
   }
 
   private PluginResult startListeningAction(boolean isIntercepting, CallbackContext callbackContext){
-    throw new NotImplementedException();
+    throw new java.lang.UnsupportedOperationException("Not supported yet.");
   }
 
   private PluginResult stopListeningAction(CallbackContext callbackContext){
-    throw new NotImplementedException();
+    throw new java.lang.UnsupportedOperationException("Not supported yet.");
   }
 }
