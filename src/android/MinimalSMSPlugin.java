@@ -45,7 +45,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     return true;
   }
 
-  private PluginResult sendAction(String number, String message, CallbackContext callbackContext){
+  private PluginResult sendAction(final String number, final String message, final CallbackContext callbackContext){
     cordova.getThreadPool().execute(new Runnable() {
       @Override
       public void run(){
@@ -63,7 +63,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     return this.cordova.getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
   }
 
-  private void send(final String number, final String message, final CallbackContext callbackContext){
+  private void send(String number, String message, CallbackContext callbackContext){
     SmsManager smsManager = SmsManager.getDefault();
 		final ArrayList<String> parts = smsManager.divideMessage(message);
     final SmsBroadcastReceiver broadcastReceiver = new SmsBroadcastReceiver(parts.size(), callbackContext, cordova);
