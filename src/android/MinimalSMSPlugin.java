@@ -78,15 +78,15 @@ public class MinimalSMSPlugin extends CordovaPlugin {
 		}
   }
 
-  private PluginResult getLatestReceivedAction(number, callbackContext){
+  private PluginResult getLatestReceivedAction(int number, CallbackContext callbackContext){
     throw new NotImplementedException();
   }
 
-  private PluginResult startListeningAction(isIntercepting, callbackContext){
+  private PluginResult startListeningAction(boolean isIntercepting, CallbackContext callbackContext){
     throw new NotImplementedException();
   }
 
-  private PluginResult stopListeningAction(callbackContext){
+  private PluginResult stopListeningAction(CallbackContext callbackContext){
     throw new NotImplementedException();
   }
 }
