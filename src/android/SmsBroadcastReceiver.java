@@ -7,7 +7,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
   private int partsCount;
   private CallbackContext callbackContext;
 
-  new SmsBroadcastReceiver(int partsCount, CallbackContext callbackContext) {
+  SmsBroadcastReceiver(int partsCount, CallbackContext callbackContext) {
     this.partsCount = partsCount;
     this.callbackContext = callbackContext;
   }
