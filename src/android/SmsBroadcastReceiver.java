@@ -1,4 +1,4 @@
-package pl.wokatorek.cordova.plugin.sms;
+package pl.wokatorek.cordova.plugin.miniSms;
 
 import android.content.BroadcastReceiver;
 import org.apache.cordova.CallbackContext;
@@ -16,7 +16,7 @@ public class MinimalSMSPlugin extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent){
     switch (getResultCode()) {
       case SmsManager.STATUS_ON_ICC_SENT:
-      case Activity.RESULT_OK: 
+      case Activity.RESULT_OK:
         break;
       case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
 			case SmsManager.RESULT_ERROR_NO_SERVICE:

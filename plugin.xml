@@ -5,13 +5,13 @@
     <description>Minimal SMS plugin</description>
     <license>MIT</license>
     <keywords>cordova,sms</keywords>
-    <js-module src="www/sms.js" name="sms">
-        <clobbers target="window.sms" />
+    <js-module src="www/miniSms.js" name="miniSms">
+        <clobbers target="window.miniSms" />
     </js-module>
     <platform name="android">
         <config-file target="config.xml" parent="/*">
-            <feature name="sms">
-                <param name="android-package" value="pl.wokatorek.cordova.plugin.sms.MinimalSMSPlugin"/>
+            <feature name="miniSms">
+                <param name="android-package" value="pl.wokatorek.cordova.plugin.miniSms.MinimalSMSPlugin"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
@@ -24,6 +24,6 @@
     		    <uses-permission android:name="android.permission.WRITE_SMS" />
     		    <uses-permission android:name="android.permission.SEND_SMS" />
         </config-file>
-        <source-file src="src/android/MinimalSMSPlugin.java" target-dir="src/pl/wokatorek/cordova/plugin/sms"/>
+        <source-file src="src/android/MinimalSMSPlugin.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
     </platform>
 </plugin>

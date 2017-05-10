@@ -1,8 +1,10 @@
-package pl.wokatorek.cordova.plugin.sms;
+package pl.wokatorek.cordova.plugin.miniSms;
 
 import android.content.pm.PackageManager;
 import android.telephony.SmsManager;
 import android.util.Log;
+import java.util.ArrayList;
+import org.apache.commons.lang3.NotImplementedException
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
@@ -74,5 +76,17 @@ public class MinimalSMSPlugin extends CordovaPlugin {
 		else {
 			manager.sendTextMessage(number, null, message, sentIntent, null);
 		}
+  }
+
+  private PluginResult getLatestReceivedAction(number, callbackContext){
+    throw new NotImplementedException();
+  }
+
+  private PluginResult startListeningAction(isIntercepting, callbackContext){
+    throw new NotImplementedException();
+  }
+
+  private PluginResult stopListeningAction(callbackContext){
+    throw new NotImplementedException();
   }
 }
