@@ -64,7 +64,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   }
 
   private void send(String number, String message, CallbackContext callbackContext){
-    SmsManager smsManager = SmsManager.getDefault();
+    SmsManager smsManager = smsManager.getDefault();
 		final ArrayList<String> parts = smsManager.divideMessage(message);
     final SmsBroadcastReceiver broadcastReceiver = new SmsBroadcastReceiver(parts.size(), callbackContext);
     String smsActionRandom = "SMS_SENT"+java.util.UUID.randomUUID().toString();
@@ -75,10 +75,10 @@ public class MinimalSMSPlugin extends CordovaPlugin {
 			for (int i = 0; i < parts.size(); i++) {
 				sentIntents.add(sentIntent);
 			}
-			manager.sendMultipartTextMessage(number, null, parts, sentIntents, null);
+			smsManager.sendMultipartTextMessage(number, null, parts, sentIntents, null);
 		}
 		else {
-			manager.sendTextMessage(number, null, message, sentIntent, null);
+			smsManager.sendTextMessage(number, null, message, sentIntent, null);
 		}
   }
 

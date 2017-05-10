@@ -3,11 +3,11 @@ package pl.wokatorek.cordova.plugin.miniSms;
 import android.content.BroadcastReceiver;
 import org.apache.cordova.CallbackContext;
 
-public class MinimalSMSPlugin extends BroadcastReceiver {
+public class SmsBroadcastReceiver extends BroadcastReceiver {
   private int partsCount;
   private CallbackContext callbackContext;
 
-  new BroadcastReceiver(int partsCount, CallbackContext callbackContext) {
+  new SmsBroadcastReceiver(int partsCount, CallbackContext callbackContext) {
     this.partsCount = partsCount;
     this.callbackContext = callbackContext;
   }
