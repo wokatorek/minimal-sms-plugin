@@ -4,7 +4,7 @@ import android.content.pm.PackageManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 import java.util.ArrayList;
-import org.apache.commons.lang3.NotImplementedException
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
