@@ -1,7 +1,10 @@
 package pl.wokatorek.cordova.plugin.miniSms;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.telephony.SmsManager;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
 
 public class SmsBroadcastReceiver extends BroadcastReceiver {
   private int partsCount;
@@ -14,6 +17,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent){
+    boolean anyError = false;
     switch (getResultCode()) {
       case SmsManager.STATUS_ON_ICC_SENT:
       case Activity.RESULT_OK:
