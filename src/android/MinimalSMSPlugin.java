@@ -74,7 +74,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     Activity context = this.cordova.getActivity();
     Uri uri = Uri.parse("content://sms/inbox");
     String sortOrderExpression = "_id desc";
-    if(nuumber > 0) {
+    if(number > 0) {
       sortOrderExpression.concat(" LIMIT "+number);
     }
     Cursor cursor = context.getContentResolver().query(uri, (String[])null, "", (String[])null, sortOrderExpression);
@@ -133,7 +133,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   }
 
   private PluginResult startListeningAction(boolean isIntercepting, CallbackContext callbackContext){
-    this.smsReceiver = new SmsReceiver(isIntercepting,callbackContext);
+    this.smsReceiver = new SmsReceiver(isIntercepting,callbackContext,webView,cordova);
     IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
     intentFilter.setPriority(1000);
     this.cordova.getActivity().registerReceiver(this.smsReceiver, intentFilter);

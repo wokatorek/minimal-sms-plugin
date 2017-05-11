@@ -32,7 +32,7 @@ public class SmsReceiver extends BroadcastReceiver {
     Bundle extras = intent.getExtras();
     if (extras != null) {
       Object[] pdus;
-      if ((pdus = (Object[])bundle.get("pdus")).length != 0) {
+      if ((pdus = (Object[])extras.get("pdus")).length != 0) {
         for (int i = 0; i < pdus.length; ++i) {
           SmsMessage sms = SmsMessage.createFromPdu((byte[])((byte[])pdus[i]));
           JSONObject json = new JSONObject();
