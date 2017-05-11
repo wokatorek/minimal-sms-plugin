@@ -77,7 +77,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     if(nuumber > 0) {
       sortOrderExpression.concat(" LIMIT "+number);
     }
-    Cursor cursor = context.getContentResolver().query(uri, (String[])null, "", (String[])null, );
+    Cursor cursor = context.getContentResolver().query(uri, (String[])null, "", (String[])null, sortOrderExpression);
     String[] columnNames = cursor.getColumnNames();
     StringBuilder builder = new StringBuilder();
     for(String s : columnNames) {

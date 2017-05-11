@@ -19,7 +19,7 @@ public class SmsReceiver extends BroadcastReceiver {
   private CordovaWebView cordovaWebView;
   private CordovaInterface cordovaInterface;
 
-  SendStatusReceiver(boolean isBroadcastingFurther, CallbackContext callbackContext, CordovaWebView cordovaWebView, CordovaInterface cordovaInterface) {
+  public SmsReceiver(boolean isBroadcastingFurther, CallbackContext callbackContext, CordovaWebView cordovaWebView, CordovaInterface cordovaInterface) {
     super();
     this.isBroadcastingFurther = isBroadcastingFurther;
     this.callbackContext = callbackContext;

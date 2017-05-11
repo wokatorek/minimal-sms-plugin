@@ -15,7 +15,7 @@ public class SendStatusReceiver extends BroadcastReceiver {
   private CallbackContext callbackContext;
   private CordovaInterface cordovaInterface;
 
-  SendStatusReceiver(int partsCount, CallbackContext callbackContext, CordovaInterface cordovaInterface) {
+  public SendStatusReceiver(int partsCount, CallbackContext callbackContext, CordovaInterface cordovaInterface) {
     super();
     this.partsCount = partsCount;
     this.callbackContext = callbackContext;
