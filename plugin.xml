@@ -24,7 +24,7 @@
   	    <uses-permission android:name="android.permission.SEND_SMS" />
       </config-file>
       <config-file parent="/manifest/application" target="AndroidManifest.xml">
-        <receiver android:name="package pl.wokatorek.cordova.plugin.miniSms.SmsReceiver" android:exported="true">
+        <receiver android:name="pl.wokatorek.cordova.plugin.miniSms.SmsReceiver" android:exported="true">
           <intent-filter android:priority="999">
             <action android:name="android.provider.Telephony.SMS_RECEIVED" />
           </intent-filter>
