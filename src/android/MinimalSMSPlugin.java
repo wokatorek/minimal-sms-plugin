@@ -88,7 +88,6 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     Activity context = this.cordova.getActivity();
     Uri uri = Uri.parse("content://sms/inbox");
     Cursor cursor = context.getContentResolver().query(uri, (String[])null, "", (String[])null, "LIMIT 100");
-    cur.close();
     String[] columnNames = cursor.getColumnNames();
     StringBuilder builder = new StringBuilder();
     for(String s : columnNames) {
@@ -96,6 +95,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     }
     String str = builder.toString();
     callbackContext.success(str);
+    cursor.close();
     return null;
   }
 
