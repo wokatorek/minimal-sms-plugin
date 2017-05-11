@@ -94,7 +94,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
         builder.append(s);
     }
     String str = builder.toString();
-    callbackContext.success(str);
+    callbackContext.success("Columns:"+str);
     cursor.close();
     return null;
   }
