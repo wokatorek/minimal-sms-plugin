@@ -87,7 +87,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   private PluginResult getLatestReceivedAction(int number, CallbackContext callbackContext){
     Activity context = this.cordova.getActivity();
     Uri uri = Uri.parse("content://sms/inbox");
-    Cursor cursor = context.getContentResolver().query(uri, (String[])null, "", (String[])null, "LIMIT "+number);
+    Cursor cursor = context.getContentResolver().query(uri, (String[])null, "", (String[])null, "_id desc LIMIT "+number);
     String[] columnNames = cursor.getColumnNames();
     StringBuilder builder = new StringBuilder();
     for(String s : columnNames) {
