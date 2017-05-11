@@ -111,10 +111,9 @@ public class MinimalSMSPlugin extends CordovaPlugin {
         for (int i = 0; i < totalColumn; i++) {
             if (cursor.getColumnName(i) != null) {
                 try {
-                    rowObject.put(cursor.getColumnName(i),
-                            cursor.getString(i));
+                    rowObject.put(cursor.getColumnName(i),cursor.getString(i));
                 } catch (Exception e) {
-                    Log.d(TAG, e.getMessage());
+                    Log.d("minimal-sms-plugin", e.getMessage());
                 }
             }
         }
