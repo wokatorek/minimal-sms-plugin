@@ -19,6 +19,29 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MinimalSMSPlugin extends CordovaPlugin {
+  private SmsReceiver smsReceiver = null;
+
+  public JSONArray cur2Json(Cursor cursor) {
+    JSONArray resultSet = new JSONArray();
+    cursor.moveToFirst();
+    while (cursor.isAfterLast() == false) {
+        int totalColumn = cursor.getColumnCount();
+        JSONObject rowObject = new JSONObject();
+        for (int i = 0; i < totalColumn; i++) {
+            if (cursor.getColumnName(i) != null) {
+                try {
+                    rowObject.put(cursor.getColumnName(i),cursor.getString(i));
+                } catch (Exception e) {
+                    Log.d("minimal-sms-plugin", e.getMessage());
+                }
+            }
+        }
+        resultSet.put(rowObject);
+        cursor.moveToNext();
+    }
+    cursor.close();
+    return resultSet;
+  }
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -47,43 +70,6 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     return true;
   }
 
-  private PluginResult sendAction(final String number, final String message, final CallbackContext callbackContext){
-    cordova.getThreadPool().execute(new Runnable() {
-      @Override
-      public void run(){
-        if(!isSupported()){
-          callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "SMS is not supported"));
-          return;
-        }
-        send(number,message,callbackContext);
-      }
-    });
-    return null;
-  }
-
-  private boolean isSupported() {
-    return this.cordova.getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
-  }
-
-  private void send(String number, String message, CallbackContext callbackContext){
-    SmsManager smsManager = SmsManager.getDefault();
-		final ArrayList<String> parts = smsManager.divideMessage(message);
-    final SmsBroadcastReceiver broadcastReceiver = new SmsBroadcastReceiver(parts.size(), callbackContext, cordova);
-    String smsActionRandom = "SMS_SENT"+java.util.UUID.randomUUID().toString();
-		this.cordova.getActivity().registerReceiver(broadcastReceiver, new IntentFilter(smsActionRandom));
-    PendingIntent sentIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), 0, new Intent(smsActionRandom), 0);
-    if (parts.size() > 1) {
-			ArrayList<PendingIntent> sentIntents = new ArrayList<PendingIntent>();
-			for (int i = 0; i < parts.size(); i++) {
-				sentIntents.add(sentIntent);
-			}
-			smsManager.sendMultipartTextMessage(number, null, parts, sentIntents, null);
-		}
-		else {
-			smsManager.sendTextMessage(number, null, message, sentIntent, null);
-		}
-  }
-
   private PluginResult getLatestReceivedAction(int number, CallbackContext callbackContext){
     Activity context = this.cordova.getActivity();
     Uri uri = Uri.parse("content://sms/inbox");
@@ -105,36 +91,61 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     return null;
   }
 
-  public JSONArray cur2Json(Cursor cursor) {
+  private boolean isSupported() {
+    return this.cordova.getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+  }
 
-    JSONArray resultSet = new JSONArray();
-    cursor.moveToFirst();
-    while (cursor.isAfterLast() == false) {
-        int totalColumn = cursor.getColumnCount();
-        JSONObject rowObject = new JSONObject();
-        for (int i = 0; i < totalColumn; i++) {
-            if (cursor.getColumnName(i) != null) {
-                try {
-                    rowObject.put(cursor.getColumnName(i),cursor.getString(i));
-                } catch (Exception e) {
-                    Log.d("minimal-sms-plugin", e.getMessage());
-                }
-            }
+  public void onDestroy() {
+    this.stopListeningAction(null);
+  }
+
+  private void send(String number, String message, CallbackContext callbackContext){
+    SmsManager smsManager = SmsManager.getDefault();
+		final ArrayList<String> parts = smsManager.divideMessage(message);
+    final SendStatusReceiver broadcastReceiver = new SendStatusReceiver(parts.size(), callbackContext, cordova);
+    String smsActionRandom = "SMS_SENT"+java.util.UUID.randomUUID().toString();
+		this.cordova.getActivity().registerReceiver(broadcastReceiver, new IntentFilter(smsActionRandom));
+    PendingIntent sentIntent = PendingIntent.getBroadcast(this.cordova.getActivity(), 0, new Intent(smsActionRandom), 0);
+    if (parts.size() > 1) {
+			ArrayList<PendingIntent> sentIntents = new ArrayList<PendingIntent>();
+			for (int i = 0; i < parts.size(); i++) {
+				sentIntents.add(sentIntent);
+			}
+			smsManager.sendMultipartTextMessage(number, null, parts, sentIntents, null);
+		}
+		else {
+			smsManager.sendTextMessage(number, null, message, sentIntent, null);
+		}
+  }
+
+  private PluginResult sendAction(final String number, final String message, final CallbackContext callbackContext){
+    cordova.getThreadPool().execute(new Runnable() {
+      @Override
+      public void run(){
+        if(!isSupported()){
+          callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "SMS is not supported"));
+          return;
         }
-        resultSet.put(rowObject);
-        cursor.moveToNext();
-    }
-
-    cursor.close();
-    return resultSet;
-
+        send(number,message,callbackContext);
+      }
+    });
+    return null;
   }
 
   private PluginResult startListeningAction(boolean isIntercepting, CallbackContext callbackContext){
-    throw new java.lang.UnsupportedOperationException("Not supported yet.");
+    this.smsReceiver = new SmsReceiver(isIntercepting,callbackContext);
+    IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+    intentFilter.setPriority(1000);
+    this.cordova.getActivity().registerReceiver(this.smsReceiver, intentFilter);
+    callbackContext.success();
+    return null;
   }
 
   private PluginResult stopListeningAction(CallbackContext callbackContext){
-    throw new java.lang.UnsupportedOperationException("Not supported yet.");
+    this.cordova.getActivity().unregisterReceiver(this.smsReceiver);
+    if(callbackContext != null){
+      callbackContext.success();
+    }
+    return null;
   }
 }

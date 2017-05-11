@@ -10,15 +10,16 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 
-public class SmsBroadcastReceiver extends BroadcastReceiver {
+public class SendStatusReceiver extends BroadcastReceiver {
   private int partsCount;
   private CallbackContext callbackContext;
-  private CordovaInterface cordova;
+  private CordovaInterface cordovaInterface;
 
-  SmsBroadcastReceiver(int partsCount, CallbackContext callbackContext, CordovaInterface cordova) {
+  SendStatusReceiver(int partsCount, CallbackContext callbackContext, CordovaInterface cordovaInterface) {
+    super();
     this.partsCount = partsCount;
     this.callbackContext = callbackContext;
-    this.cordova = cordova;
+    this.cordovaInterface = cordovaInterface;
   }
 
   @Override
@@ -42,7 +43,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
 			} else {
 				callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 			}
-			cordova.getActivity().unregisterReceiver(this);
+			cordovaInterface.getActivity().unregisterReceiver(this);
 		}
   }
 }

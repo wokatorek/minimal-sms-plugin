@@ -9,6 +9,6 @@ sms.get(number, successCallback, failureCallback) - number=-1 => get all receive
 sms.startListening(isIntercepting, successCallback, failureCallback) - isIntercepting: is plugin intercepting from user's messages application
 sms.stopListening(successCallback, failureCallback)
 
-fires 'onSMSReception' event
+fires 'onSMSArrive' event
 
-Cordova 6.4, Android SDK min 14 
+Cordova 6.4, Android SDK min 14
