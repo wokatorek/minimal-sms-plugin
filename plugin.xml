@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="minimal-sms-plugin" version="0.1.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="minimal-sms-plugin" version="0.2.0">
     <name>MinimalSMSPlugin</name>
     <author>wokatorek</author>
     <description>Minimal SMS plugin</description>
