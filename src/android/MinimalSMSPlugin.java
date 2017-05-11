@@ -92,7 +92,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
     StringBuilder builder = new StringBuilder();
     for(String s : columnNames) {
         builder.append(s);
-        builder.append(', ');
+        builder.append(", ");
     }
     String str = builder.toString();
     callbackContext.success("Columns:"+str);
