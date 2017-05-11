@@ -6,25 +6,24 @@
     <license>MIT</license>
     <keywords>cordova,sms</keywords>
     <js-module src="www/miniSms.js" name="miniSms">
-        <clobbers target="window.miniSms" />
+      <clobbers target="window.miniSms" />
     </js-module>
     <platform name="android">
-        <config-file target="config.xml" parent="/*">
-            <feature name="miniSms">
-                <param name="android-package" value="pl.wokatorek.cordova.plugin.miniSms.MinimalSMSPlugin"/>
-            </feature>
-        </config-file>
-        <config-file target="AndroidManifest.xml" parent="/*">
-    		    <uses-feature android:name="android.hardware.telephony" android:required="false" />
-    			  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    		    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    		    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
-    		    <uses-permission android:name="android.permission.RECEIVE_MMS" />
-    		    <uses-permission android:name="android.permission.READ_SMS" />
-    		    <uses-permission android:name="android.permission.WRITE_SMS" />
-    		    <uses-permission android:name="android.permission.SEND_SMS" />
-        </config-file>
-        <source-file src="src/android/MinimalSMSPlugin.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
-        <source-file src="src/android/SmsBroadcastReceiver.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
+      <config-file target="config.xml" parent="/*">
+        <feature name="miniSms">
+          <param name="android-package" value="pl.wokatorek.cordova.plugin.miniSms.MinimalSMSPlugin"/>
+        </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/*">
+  	    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+  		  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    		<uses-permission android:name="android.permission.RECEIVE_SMS" />
+    		<uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+  	    <uses-permission android:name="android.permission.READ_SMS" />
+  	    <uses-permission android:name="android.permission.WRITE_SMS" />
+  	    <uses-permission android:name="android.permission.SEND_SMS" />
+      </config-file>
+      <source-file src="src/android/MinimalSMSPlugin.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
+      <source-file src="src/android/SmsBroadcastReceiver.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
     </platform>
 </plugin>

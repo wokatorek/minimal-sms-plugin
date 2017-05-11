@@ -7,6 +7,12 @@ miniSms.isSupported = function(successCallback, failureCallback){
 }
 
 miniSms.send = function(number, message, successCallback, failureCallback) {
+  if(typeof address !== 'string'){
+    if(typeof failureCallback === 'function') {
+			failureCallback("require address, phone number as string, or array of string");
+		}
+		return;
+  }
   cordova.exec(successCallback, failureCallback, 'miniSms', 'send', [ number, message ]);
 }
 

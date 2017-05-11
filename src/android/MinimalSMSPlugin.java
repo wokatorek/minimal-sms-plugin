@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.telephony.SmsManager;
 import android.util.Log;
 import java.util.ArrayList;
@@ -83,7 +85,18 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   }
 
   private PluginResult getLatestReceivedAction(int number, CallbackContext callbackContext){
-    throw new java.lang.UnsupportedOperationException("Not supported yet.");
+    Activity context = this.cordova.getActivity();
+    Uri uri = Uri.parse("content://sms/inbox");
+    Cursor cursor = context.getContentResolver().query(uri, (String[])null, "", (String[])null, "LIMIT 100");
+    cur.close();
+    String[] columnNames = cursor.getColumnNames();
+    StringBuilder builder = new StringBuilder();
+    for(String s : columnNames) {
+        builder.append(s);
+    }
+    String str = builder.toString();
+    callbackContext.success(str);
+    return null;
   }
 
   private PluginResult startListeningAction(boolean isIntercepting, CallbackContext callbackContext){
