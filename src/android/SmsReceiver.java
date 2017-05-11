@@ -35,7 +35,7 @@ public class SmsReceiver extends BroadcastReceiver {
       if ((pdus = (Object[])extras.get("pdus")).length != 0) {
         for (int i = 0; i < pdus.length; ++i) {
           SmsMessage sms = SmsMessage.createFromPdu((byte[])((byte[])pdus[i]));
-          JSONObject json = new JSONObject();
+          final JSONObject json = new JSONObject();
           try {
           	json.put( "id", sms.getOriginatingAddress() );
           	json.put( "address", sms.getOriginatingAddress() );
