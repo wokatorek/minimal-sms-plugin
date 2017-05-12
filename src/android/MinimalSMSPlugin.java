@@ -133,6 +133,7 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   }
 
   private PluginResult startListeningAction(boolean isIntercepting, CallbackContext callbackContext){
+    Log.i("minimal-sms-plugin","startListeningAction");
     this.smsReceiver = new SmsReceiver(isIntercepting,callbackContext,webView,cordova);
     IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
     intentFilter.setPriority(1000);

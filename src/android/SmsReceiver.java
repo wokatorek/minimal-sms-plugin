@@ -25,14 +25,18 @@ public class SmsReceiver extends BroadcastReceiver {
     this.callbackContext = callbackContext;
     this.cordovaWebView = cordovaWebView;
     this.cordovaInterface = cordovaInterface;
+    Log.i("minimal-sms-plugin","SmsReceiver");
   }
 
   @Override
   public void onReceive(Context context, Intent intent){
+  Log.i("minimal-sms-plugin","onReceive");
     Bundle extras = intent.getExtras();
+    Log.i("minimal-sms-plugin","onReceive");
     if (extras != null) {
       Object[] pdus;
       if ((pdus = (Object[])extras.get("pdus")).length != 0) {
+      Log.i("minimal-sms-plugin","onReceive");
         for (int i = 0; i < pdus.length; i++) {
           SmsMessage sms = SmsMessage.createFromPdu((byte[])pdus[i]);
           final JSONObject json = new JSONObject();
@@ -47,10 +51,12 @@ public class SmsReceiver extends BroadcastReceiver {
 
           } catch ( Exception e ) {
               e.printStackTrace();
+              Log.e("minimal-sms-plugin",Log.getStackTraceString(e));
           }
           cordovaInterface.getActivity().runOnUiThread(new Runnable(){
             @Override
             public void run() {
+              Log.e("minimal-sms-plugin","cordova.run()");
             	String eventUrl = String.format("javascript:cordova.fireDocumentEvent(\"%s\", {\"data\":%s});", "onSMSArrive", json.toString());
             	cordovaWebView.loadUrl( eventUrl );
             }
