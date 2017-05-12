@@ -23,13 +23,6 @@
   	    <uses-permission android:name="android.permission.WRITE_SMS" />
   	    <uses-permission android:name="android.permission.SEND_SMS" />
       </config-file>
-      <config-file parent="/manifest/application" target="AndroidManifest.xml">
-        <receiver android:name="pl.wokatorek.cordova.plugin.miniSms.SmsReceiver" android:exported="true">
-          <intent-filter android:priority="999">
-            <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-          </intent-filter>
-        </receiver>
-      </config-file>
       <source-file src="src/android/MinimalSMSPlugin.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
       <source-file src="src/android/SendStatusReceiver.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms"/>
       <source-file src="src/android/SmsReceiver.java" target-dir="src/pl/wokatorek/cordova/plugin/miniSms" />

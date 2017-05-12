@@ -20,6 +20,10 @@ public class SmsReceiver extends BroadcastReceiver {
   private CordovaWebView cordovaWebView;
   private CordovaInterface cordovaInterface;
 
+  public SmsReceiver() {
+    super();
+  }
+
   public SmsReceiver(boolean isBroadcastingFurther, CallbackContext callbackContext, CordovaWebView cordovaWebView, CordovaInterface cordovaInterface) {
     super();
     this.isBroadcastingFurther = isBroadcastingFurther;
@@ -27,6 +31,38 @@ public class SmsReceiver extends BroadcastReceiver {
     this.cordovaWebView = cordovaWebView;
     this.cordovaInterface = cordovaInterface;
     Log.i("minimal-sms-plugin","SmsReceiver");
+  }
+
+  public void setIsBroadcastingFurther(boolean isBroadcastingFurther){
+    this.isBroadcastingFurther = isBroadcastingFurther;
+  }
+
+  public void setCallbackContext(CallbackContext callbackContext){
+    this.callbackContext = callbackContext;
+  }
+
+  public void setCordovaWebView(CordovaWebView cordovaWebView){
+    this.cordovaWebView = cordovaWebView;
+  }
+
+  public void setCordovaInterface(CordovaInterface cordovaInterface){
+    this.cordovaInterface = cordovaInterface;
+  }
+
+  public boolean getIsBroadcastingFurther(){
+    return this.isBroadcastingFurther;
+  }
+
+  public CallbackContext getCallbackContext(){
+    return this.callbackContext;
+  }
+
+  public CordovaWebView getCordovaWebView(){
+    return this.cordovaWebView;
+  }
+
+  public CordovaInterface getCordovaInterface(){
+    return this.cordovaInterface;
   }
 
   @Override
