@@ -85,7 +85,6 @@ public class MinimalSMSPlugin extends CordovaPlugin {
         builder.append(", ");
     }
     String str = builder.toString();
-    // callbackContext.success("Columns:"+str);
     callbackContext.success(cur2Json(cursor));
     cursor.close();
     return null;
@@ -143,7 +142,11 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   }
 
   private PluginResult stopListeningAction(CallbackContext callbackContext){
-    this.cordova.getActivity().unregisterReceiver(this.smsReceiver);
+    try {
+      this.cordova.getActivity().unregisterReceiver(this.smsReceiver);
+    } catch (IllegalArgumentException e) {
+      Log.e("minimal-sms-plugin","smsReceiver service not registered!");
+    }
     if(callbackContext != null){
       callbackContext.success();
     }
