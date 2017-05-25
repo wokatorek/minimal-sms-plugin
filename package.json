@@ -1,0 +1,29 @@
+{
+  "name": "minimal-sms-plugin",
+  "version": "0.3.2",
+  "description": "Minimal SMS plugin for Cordova Android",
+  "cordova": {
+    "id": "minimal-sms-plugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wokatorek/minimal-sms-plugin.git"
+  },
+  "keywords": [
+    "sms",
+    "read",
+    "receive",
+    "send",
+    "cordova",
+    "android"
+  ],
+  "author": "wokatorek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wokatorek/minimal-sms-plugin/issues"
+  },
+  "homepage": "https://github.com/wokatorek/minimal-sms-plugin"
+}
