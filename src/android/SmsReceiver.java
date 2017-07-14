@@ -78,13 +78,14 @@ public class SmsReceiver extends BroadcastReceiver {
           SmsMessage sms = SmsMessage.createFromPdu((byte[])pdus[i]);
           final JSONObject json = new JSONObject();
           try {
-          	json.put( "id", sms.getOriginatingAddress() );
-          	json.put( "address", sms.getOriginatingAddress() );
-          	json.put( "body", sms.getMessageBody() );
-          	json.put( "date_sent", sms.getTimestampMillis() );
-          	json.put( "date", System.currentTimeMillis() );
+          	// json.put( "id", sms.getOriginatingAddress() );
+          	json.put( "originating_address", sms.getOriginatingAddress() );
+          	json.put( "message_body", sms.getMessageBody() );
+          	json.put( "timestamp_millis", sms.getTimestampMillis() );
+          	json.put( "current_time_millis", System.currentTimeMillis() );
           	json.put( "status", sms.getStatus() );
-          	json.put( "service_center", sms.getServiceCenterAddress());
+          	json.put( "service_center_address", sms.getServiceCenterAddress());
+          	json.put( "index_on_icc", sms.getIndexOnIcc());
 
           } catch ( Exception e ) {
               e.printStackTrace();

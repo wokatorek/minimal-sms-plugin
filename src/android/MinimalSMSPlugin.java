@@ -142,10 +142,15 @@ public class MinimalSMSPlugin extends CordovaPlugin {
   }
 
   private PluginResult stopListeningAction(CallbackContext callbackContext){
+    Log.i("minimal-sms-plugin","stopListeningAction");
     try {
       this.cordova.getActivity().unregisterReceiver(this.smsReceiver);
     } catch (IllegalArgumentException e) {
       Log.e("minimal-sms-plugin","smsReceiver service not registered!");
+      e.printStackTrace();
+    } catch (Exception e ){
+      Log.e("minimal-sms-plugin","Unknown error during stopListeningAction()");
+      e.printStackTrace();
     }
     if(callbackContext != null){
       callbackContext.success();
